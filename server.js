@@ -30,6 +30,5 @@ app.post("/webhooks", (req, res) => {
   return res.sendStatus(200);
 });
 
-app.listen(3000, () => console.log("Listening on http://localhost:3000/webhooks"));
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on http://localhost:${port}/webhooks`));
