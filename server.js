@@ -32,3 +32,19 @@ app.post("/webhooks", (req, res) => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on http://localhost:${port}/webhooks`));
+import jwt from "jsonwebtoken";
+
+app.get("/api/ping", (req, res) => {
+  const auth = req.get("authorization") || "";
+  const token = auth.startsWith("Bearer ") ? auth.slice(7) : null;
+
+  if (!token) return res.status(401).send("Missing Bearer token");
+
+  try {
+    const payload = jwt.verify(token, process.env.SHOPIFY_API_SECRET, { algorithms: ["HS256"] });
+    return res.json({ ok: true, shop: payload.dest });
+  } catch (e) {
+    return res.status(401).send("Invalid session token");
+  }
+});
+
