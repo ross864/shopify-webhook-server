@@ -18,7 +18,7 @@ app.use(
 );
 
 // Ensure preflight OPTIONS requests succeed
-app.options("*", cors());
+app.options(/.*/, cors());
 
 /**
  * WEBHOOKS: Shopify HMAC verification requires RAW body
