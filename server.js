@@ -7,11 +7,11 @@ const app = express();
 
 /**
  * CORS for calls coming from your embedded frontend:
- * Origin in your error screenshot was https://app.inversion.agency
+ * Origin in your error screenshot was https://app.buildeqty.com
  */
 app.use(
   cors({
-    origin: ["https://app.inversion.agency"],
+    origin: ["https://app.buildeqty.com"],
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
